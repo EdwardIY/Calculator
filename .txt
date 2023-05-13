@@ -1,0 +1,1 @@
+1. Duplicates of symbols when /+/ or +/+
