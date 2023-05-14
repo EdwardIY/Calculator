@@ -29,12 +29,12 @@ calculator.addEventListener('click', (e) => {
     console.log(e.target.id);
 
     if (e.target.id in numbers)
-        addNumber(numbers[e.target.id])
+        numberPressed(numbers[e.target.id])
     if (e.target.id in symbols)
         symbolPressed(symbols[e.target.id])
 })
 
-function addNumber(num) {
+function numberPressed(num) {
     if (num === 0 && (+view.textContent === 0) && view.textContent.length == 1)
         return
     else if (num === 0 && (currentNum.length > 0 && (+currentNum) == 0))
@@ -65,8 +65,11 @@ function symbolPressed(symbol) {
             return
         
         if (Object.values(symbols).includes(view.textContent.slice(-1))) {
-            view.textContent = view.textContent.slice(0, -1) + symbol
-            return;
+            if (!Object.values(symbols).includes(view.textContent[view.textContent.length - 2])) {
+                view.textContent = view.textContent.slice(0, -1) + symbol
+                return
+            }
+            else return
         }
     }
 
@@ -80,6 +83,38 @@ function symbolPressed(symbol) {
         if (view.textContent.slice(-1) == '.')
         return
     }
+        
+    else if (symbol === '=') {
+        if (Object.values(symbols).includes(view.textContent.slice(-1)) || view.textContent.length === 0)
+            return;
+        else calculate()
+    }
     currentNum = '';
     view.textContent += symbol
+}
+
+function calculate() {
+    let calcStr = view.textContent.split('')
+
+    for (let [index, x] of calcStr.entries()) {
+        if (x == '/' || x == '*') {
+            console.log(true)
+            makeOperation(index,x,calcStr)
+        }
+    }
+}
+
+function makeOperation(pos, symbol, calcStr) {
+    let right = pos;
+    let left = pos;
+
+    let result = '';
+    while (calcStr[left] !== undefined) {
+        left--;
+        if ((calcStr[left] == '.' || !isNaN(calcStr[left])) || (calcStr[left] == '-' && calcStr[left - 1] === undefined)) {
+            result = calcStr[left] + result
+        }
+        else break;
+    }
+    console.log(result)
 }

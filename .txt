@@ -1,1 +1,2 @@
-1. Duplicates of symbols when /+/ or +/+
+you have rough draft of grabbing the left value of a * or / symbol
+now you need to start on the right
