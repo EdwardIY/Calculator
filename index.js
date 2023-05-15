@@ -24,6 +24,7 @@ const symbols = {
 }
 
 let currentNum = '';
+let total = 0;
 
 calculator.addEventListener('click', (e) => {
     console.log(e.target.id);
@@ -55,8 +56,10 @@ function numberPressed(num) {
 }
 
 function symbolPressed(symbol) {
+
     if (!symbol) {
         view.textContent = '';
+        currentNum = '';
         return;
     }
 
@@ -67,16 +70,14 @@ function symbolPressed(symbol) {
         if (Object.values(symbols).includes(view.textContent.slice(-1))) {
             if (!Object.values(symbols).includes(view.textContent[view.textContent.length - 2])) {
                 view.textContent = view.textContent.slice(0, -1) + symbol
-                return
             }
-            else return
+            return;
         }
     }
 
     else if (symbol === '-') {
         if (view.textContent.slice(-1) == '-')
             return;
-            
     }
         
     else if (symbol === '.') {
@@ -87,34 +88,23 @@ function symbolPressed(symbol) {
     else if (symbol === '=') {
         if (Object.values(symbols).includes(view.textContent.slice(-1)) || view.textContent.length === 0)
             return;
-        else calculate()
+        else {
+            currentNum = '';
+            view.textContent += symbol
+            calculate()
+        }
+        return;
     }
     currentNum = '';
     view.textContent += symbol
 }
 
 function calculate() {
-    let calcStr = view.textContent.split('')
+    let calcStr = view.textContent;
+    view.textContent += eval(calcStr.slice(0, -1));
+    
 
-    for (let [index, x] of calcStr.entries()) {
-        if (x == '/' || x == '*') {
-            console.log(true)
-            makeOperation(index,x,calcStr)
-        }
-    }
 }
 
-function makeOperation(pos, symbol, calcStr) {
-    let right = pos;
-    let left = pos;
 
-    let result = '';
-    while (calcStr[left] !== undefined) {
-        left--;
-        if ((calcStr[left] == '.' || !isNaN(calcStr[left])) || (calcStr[left] == '-' && calcStr[left - 1] === undefined)) {
-            result = calcStr[left] + result
-        }
-        else break;
-    }
-    console.log(result)
-}
+

@@ -1,2 +1,9 @@
-you have rough draft of grabbing the left value of a * or / symbol
-now you need to start on the right
+split view into two sections
+1. view
+2. memory 
+
+when enter is pressed the eqation goes to  memory 
+and answer sits in view, once another thing is pressed
+at this point memory emptys and what ever was pressed concats to view(total)
+
+when anything is pressed it goes into view
