@@ -1,9 +1,2 @@
-split view into two sections
-1. view
-2. memory 
-
-when enter is pressed the eqation goes to  memory 
-and answer sits in view, once another thing is pressed
-at this point memory emptys and what ever was pressed concats to view(total)
-
-when anything is pressed it goes into view
+ when . is pressed after calculated it adds it to display
+ even if display already has a decimal 
