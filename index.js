@@ -76,7 +76,10 @@ function symbolPressed(symbol) {
         currentNum = '';
         return;
     }
+    if (display.textContent[display.textContent.length - 1] == '.')
+        return display.textContent = display.textContent.slice(0, -1) + symbol
 
+    
     if (symbol === '*' || symbol === '/' || symbol === '+') {
         if (display.textContent.length == 0 || (display.textContent.length == 1 && Object.values(symbols).includes(display.textContent[0])))
             return
@@ -108,9 +111,8 @@ function symbolPressed(symbol) {
         if (Object.values(symbols).includes(display.textContent.slice(-1)) || display.textContent.length === 0)
             return;
         else {
-            currentNum = '';
             display.textContent += symbol
-            calculate()
+            currentNum = calculate()
         }
         return;
     }
@@ -120,11 +122,12 @@ function symbolPressed(symbol) {
 
 function calculate() {
     let calcStr = display.textContent;
+    let answer = eval(calcStr.slice(0, -1))
     memory.textContent = calcStr
-    display.textContent = eval(calcStr.slice(0, -1));
+    display.textContent = answer;
     calculated = true
     
-
+    return answer.toString()
 }
 
 
