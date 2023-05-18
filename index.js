@@ -18,6 +18,7 @@ const symbols = {
     'equals': '=',
     'decimal': '.',
     'clear': null,
+    'delete': null,
     'add': '+',
     'subtract': '-',
     'divide': '/',
@@ -53,33 +54,32 @@ function numberPressed(num) {
         return
     else if (num === 0 && (currentNum.length > 0 && (+currentNum) == 0))
         return;
-    
-
     else {
         if ((currentNum.length > 0 && (+currentNum) == 0) && currentNum[1] != '.') {
             console.log( currentNum[0])
             display.textContent = display.textContent.slice(0, -1) + num
             currentNum = currentNum.slice(0, -1) + num;
             return;
-
         }
-
         display.textContent += num;
         currentNum += num;
     }
 }
 
 function symbolPressed(symbol) {
-
     if (!symbol) {
-        display.textContent = '';
-        currentNum = '';
+        if (symbol == 'delete') {
+            display.textContent = display.textContent.slice(-1);
+            currentNum.textContent = currentNum.textContent.textContent.slice(-1); 
+        }
+        else {
+            display.textContent = '';
+            currentNum = '';
+        }
         return;
     }
     if (display.textContent[display.textContent.length - 1] == '.')
         return display.textContent = display.textContent.slice(0, -1) + symbol
-
-    
     if (symbol === '*' || symbol === '/' || symbol === '+') {
         if (display.textContent.length == 0 || (display.textContent.length == 1 && Object.values(symbols).includes(display.textContent[0])))
             return
@@ -98,15 +98,12 @@ function symbolPressed(symbol) {
     }
         
     else if (symbol === '.') {
-        // if (display.textContent.slice(-1) == '.')
-        //     return
         if (!currentNum.includes('.')) {
             display.textContent += symbol
             currentNum+= symbol
         }
         return
     }
-        
     else if (symbol === '=') {
         if (Object.values(symbols).includes(display.textContent.slice(-1)) || display.textContent.length === 0)
             return;

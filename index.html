@@ -9,44 +9,45 @@
     <!-- <script defer src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script> -->
 </head>
 <body>
-    <section class="Calculator">
-        <div>
-            <span id="multiply">*</span>
-            <span id="subtract">-</span>
-            <span id="add">+</span>
-            <span id="equals">=</span>
-        </div>
-        <div>
-            <span id="divide">/</span>
-            <span id="nine">9</span>
-            <span id="six">6</span>
-            <span id="three">3</span>
-            <span id="decimal">.</span>
-        </div>
-        <div> 
-            <div>
-                <span id="clear">clear</span>
-                <span id="del">del</span>
-            </div>
-            
-            <div>
-                <div>
-                    <span id="seven">7</span>
-                    <span id="four">4</span>
-                    <span id="one">1</span>
-                </div>
-                <div>
-                    <span id="eight">8</span>
-                    <span id="five">5</span>
-                    <span id="two">2</span>
-                </div>
-                <div id="zero">0</div>
-            </div>
-        </div>
-        
-
-        <div id="display"></div>
+    <section class="Container">
         <div id="mem"></div>
+        <div id="display"></div>
+
+        <section class="Calculator">
+            <div class="col"> 
+                <div class="row">
+                    <div class="btn--norm colormix-2" id="clear">clear</div>
+                    <div class="btn--norm colormix-2" id="delete">delete</div>
+                </div>
+                
+                <div class="row">
+                    <div class="col">
+                        <div class="btn--norm colormix-1" id="seven">7</div>
+                        <div class="btn--norm colormix-1" id="four">4</div>
+                        <div class="btn--norm colormix-1" id="one">1</div>
+                    </div>
+                    <div class="col">
+                        <div class="btn--norm colormix-1" id="eight">8</div>
+                        <div class="btn--norm colormix-1" id="five">5</div>
+                        <div class="btn--norm colormix-1" id="two">2</div>
+                    </div>
+                </div>
+                <div class="btn--wide colormix-1" id="zero">0</div>
+            </div>
+            <div class="col">
+                <div class="btn--norm colormix-3" id="divide">/</div>
+                <div class="btn--norm colormix-1" id="nine">9</div>
+                <div class="btn--norm colormix-1" id="six">6</div>
+                <div class="btn--norm colormix-1" id="three">3</div>
+                <div class="btn--norm colormix-1" id="decimal">.</div>
+            </div>
+            <div class="col">  
+                <div class="btn--norm colormix-3" id="multiply">*</div>
+                <div class="btn--norm colormix-3" id="subtract">-</div>
+                <div class="btn--norm colormix-3" id="add">+</div>
+                <div class="btn--tall colormix-2" id="equals">=</div>
+            </div>
+        </section>
     </section>
     
     <script src="./index.js"></script>

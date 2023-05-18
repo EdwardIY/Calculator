@@ -1,13 +1,91 @@
+*{
+    box-sizing: border-box;
+}
 body {
     height: 100vh;
     background-image: linear-gradient(to right, #0f0c29, #302b63, #24243e);
     display: flex;
     align-items: center;
     justify-content: center;
+    color:white;
 }
 
-body .Calculator {
+.Container {
+    display:flex;
+    align-items: start;
+    justify-content: center;
+    background-color: black;
+    flex-direction: column;
+    gap:5px;
+    padding: 1em;
+    border-radius: 10px;
+}
+
+#display,
+#mem {
+    height: 30px;
+    font-size: 18px;
+}
+
+.Calculator {
     display: flex;
+    align-items: start;
+    justify-content: center;
+    gap:5px;
+}
+.Calculator .col{
+    display:flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+    gap:3px;
+}
+.Calculator .row{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    gap:3px;
+}
+
+.btn--norm{
+    padding: 20px 0px;
+    width: 100px;
+    font-size: 25px;
+    text-align: center;
+    cursor: pointer;
+}
+.btn--wide{
+    width: 200px;
+    padding: 20px 0px;
+    font-size: 25px;
+    text-align: center;
+    cursor: pointer;
+
+}
+.btn--tall{
+    width: 100px;
+    padding: 55px 0px;
+    font-size: 25px;
+    text-align: center;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.941);
+    color:black;
+}
+
+.btn--norm:hover,
+.btn--tall:hover,
+.btn--wide:hover {
+    opacity: .7
+}
+
+.colormix-1 {
+    background-color: rgba(255, 255, 255, 0.664);
+    color:black;
+}
+.colormix-2 {
+    background-color: rgb(255, 255, 255);
+    color:black;
+}
+.colormix-3 {
+    background-color: #24243e;
 }
