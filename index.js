@@ -29,8 +29,10 @@ let currentNum = '';
 let calculated = false
 
 calculator.addEventListener('click', (e) => {
-    console.log(e.target.id);
-    console.log(currentNum.textContent)
+    if (display.textContent === 'NaN' || display.textContent === 'Infinity') {
+        display.textContent = '';
+        currentNum = ''; 
+    } 
 
     if (e.target.id in numbers) {
         if (calculated) {
