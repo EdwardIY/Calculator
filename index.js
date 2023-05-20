@@ -22,7 +22,7 @@ const symbols = {
     'add': '+',
     'subtract': '-',
     'divide': '/',
-    'multiply': '*'
+    'multiply': 'x'
 }
 
 let currentNum = '';
@@ -80,7 +80,7 @@ function symbolPressed(symbol) {
     }
     if (display.textContent[display.textContent.length - 1] == '.')
         return display.textContent = display.textContent.slice(0, -1) + symbol
-    if (symbol === '*' || symbol === '/' || symbol === '+') {
+    if (symbol === 'x' || symbol === '/' || symbol === '+') {
         if (display.textContent.length == 0 || (display.textContent.length == 1 && Object.values(symbols).includes(display.textContent[0])))
             return
         
@@ -119,7 +119,7 @@ function symbolPressed(symbol) {
 
 function calculate() {
     let calcStr = display.textContent;
-    let answer = eval(calcStr.slice(0, -1))
+    let answer = eval(calcStr.split('x').join('*').slice(0, -1))
     memory.textContent = calcStr
     display.textContent = answer;
     calculated = true
