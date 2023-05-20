@@ -17,8 +17,8 @@ const numbers = {
 const symbols = {
     'equals': '=',
     'decimal': '.',
-    'clear': null,
-    'delete': null,
+    'clear': 'clear',
+    'delete': 'delete',
     'add': '+',
     'subtract': '-',
     'divide': '/',
@@ -30,6 +30,7 @@ let calculated = false
 
 calculator.addEventListener('click', (e) => {
     console.log(e.target.id);
+    console.log(currentNum.textContent)
 
     if (e.target.id in numbers) {
         if (calculated) {
@@ -67,15 +68,17 @@ function numberPressed(num) {
 }
 
 function symbolPressed(symbol) {
-    if (!symbol) {
-        if (symbol == 'delete') {
-            display.textContent = display.textContent.slice(-1);
-            currentNum.textContent = currentNum.textContent.textContent.slice(-1); 
-        }
-        else {
-            display.textContent = '';
-            currentNum = '';
-        }
+    if (symbol == 'delete') {
+        if (display.textContent != 'NaN' && display.textContent != 'Infinity') {
+            display.textContent = display.textContent.slice(0,-1);
+            currentNum = currentNum.slice(0,-1); 
+        }     
+        return;
+
+    }
+    if (symbol == 'clear') {
+        display.textContent = '';
+        currentNum = '';
         return;
     }
     if (display.textContent[display.textContent.length - 1] == '.')
