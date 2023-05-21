@@ -1,2 +1,4 @@
  when . is pressed after calculated it adds it to display
  even if display already has a decimal 
+
+ 9/0.=

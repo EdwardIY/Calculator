@@ -70,7 +70,10 @@ function numberPressed(num) {
 }
 
 function symbolPressed(symbol) {
+    
     if (symbol == 'delete') {
+        
+
         if (display.textContent != 'NaN' && display.textContent != 'Infinity') {
             display.textContent = display.textContent.slice(0,-1);
             currentNum = currentNum.slice(0,-1); 
@@ -78,14 +81,43 @@ function symbolPressed(symbol) {
         return;
 
     }
+    if (symbol === '=') {
+        console.log(Object.values(symbols).includes(display.textContent.slice(-1)) )
+        if (Object.values(symbols).includes(display.textContent.slice(-1)) || display.textContent.length === 0)
+            return;
+        else {
+            display.textContent += symbol
+            currentNum = calculate()
+        }
+        return;
+    }
+
     if (symbol == 'clear') {
+
         display.textContent = '';
         currentNum = '';
         return;
     }
+
+    if (symbol === '-') {
+        if (display.textContent.slice(-1) == '-')
+            return;
+    }
+        
+    if (symbol === '.') {
+        
+    
+        if (!currentNum.includes('.')) {
+            display.textContent += symbol
+            currentNum+= symbol
+        }
+        return
+    }
     if (display.textContent[display.textContent.length - 1] == '.')
         return display.textContent = display.textContent.slice(0, -1) + symbol
     if (symbol === 'x' || symbol === '/' || symbol === '+') {
+        
+
         if (display.textContent.length == 0 || (display.textContent.length == 1 && Object.values(symbols).includes(display.textContent[0])))
             return
         
@@ -96,28 +128,11 @@ function symbolPressed(symbol) {
             return;
         }
     }
+    
 
-    else if (symbol === '-') {
-        if (display.textContent.slice(-1) == '-')
-            return;
-    }
-        
-    else if (symbol === '.') {
-        if (!currentNum.includes('.')) {
-            display.textContent += symbol
-            currentNum+= symbol
-        }
-        return
-    }
-    else if (symbol === '=') {
-        if (Object.values(symbols).includes(display.textContent.slice(-1)) || display.textContent.length === 0)
-            return;
-        else {
-            display.textContent += symbol
-            currentNum = calculate()
-        }
-        return;
-    }
+    
+    
+    
     currentNum = '';
     display.textContent += symbol
 }
